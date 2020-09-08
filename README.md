@@ -1,8 +1,8 @@
-# TpsPlugin
+# TpaPlugin
 [![Discord](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg)](https://discord.gg/94MgDaP)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-TpsPlugin is a Spiggot plugin in active development which includes the `/tpa` command and similar ones. This plugin is licensed under the MIT License, feel free to fork the repo and modify the code as you see fit.
+TpaPlugin is a Spiggot plugin in active development which includes the `/tpa` command and similar ones. This plugin is licensed under the MIT License, feel free to fork the repo and modify the code as you see fit.
 
 ## Todo
 
