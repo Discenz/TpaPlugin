@@ -4,6 +4,8 @@ import me.discens.tpaplugin.api.TpaRequest;
 import me.discens.tpaplugin.api.Type;
 import me.discens.tpaplugin.commands.TpaCommand;
 import me.discens.tpaplugin.commands.TpacceptCommand;
+import me.discens.tpaplugin.commands.TpahereCommand;
+import me.discens.tpaplugin.commands.TpdenyCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,6 +19,8 @@ public class TpaPlugin extends JavaPlugin {
     public void onEnable() {
         this.getCommand("tpa").setExecutor(new TpaCommand(this));
         this.getCommand("tpaccept").setExecutor(new TpacceptCommand(this));
+        this.getCommand("tpahere").setExecutor(new TpahereCommand(this));
+        this.getCommand("tpdeny").setExecutor(new TpdenyCommand(this));
     }
 
     public ArrayList<TpaRequest> getRequests () {
@@ -38,13 +42,7 @@ public class TpaPlugin extends JavaPlugin {
     }
 
     public void removeRequest (Player user) {
-        int i = 0;
-        for (TpaRequest request: requests){
-            if (request.getReciever().getName().equalsIgnoreCase(user.getName())) {
-                requests.remove(i);
-            }
-            i++;
-        }
+        requests.remove(getRequest(user));
     }
 
 }

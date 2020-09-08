@@ -42,5 +42,4 @@ public class TpacceptCommand implements CommandExecutor {
         return true;
     }
 
-
 }

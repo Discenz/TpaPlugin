@@ -1,7 +1,6 @@
 package me.discens.tpaplugin.commands;
 
 import me.discens.tpaplugin.TpaPlugin;
-import me.discens.tpaplugin.api.TpaRequest;
 import me.discens.tpaplugin.api.Type;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -10,10 +9,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class TpaCommand implements CommandExecutor {
+public class TpahereCommand implements CommandExecutor {
     private TpaPlugin plugin;
 
-    public TpaCommand(TpaPlugin plugin) {
+    public TpahereCommand(TpaPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -26,7 +25,7 @@ public class TpaCommand implements CommandExecutor {
 
         Player recipient = Bukkit.getPlayer(args[0]);
         if (recipient == null) {
-            sender.sendMessage("The player could not be found.");
+            sender.sendMessage(ChatColor.RED + "Error: The player could not be found.");
             return true;
         }
 
@@ -35,8 +34,8 @@ public class TpaCommand implements CommandExecutor {
             return true;
         }
 
-        plugin.addRequest((Player) sender, recipient, Type.TPA);
-        recipient.sendMessage(ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + sender.getName() + " would like to teleport to you. Do /tpaccept or /tpdeny");
+        plugin.addRequest((Player) sender, recipient, Type.TPAHERE);
+        recipient.sendMessage(sender.getName() + " would like you to teleport to them. Do /tpaccept or /tpdeny");
         sender.sendMessage("Request sent");
 
         return true;

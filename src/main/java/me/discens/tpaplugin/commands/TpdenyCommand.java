@@ -4,16 +4,15 @@ import me.discens.tpaplugin.TpaPlugin;
 import me.discens.tpaplugin.api.TpaRequest;
 import me.discens.tpaplugin.api.Type;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class TpaCommand implements CommandExecutor {
+public class TpdenyCommand implements CommandExecutor {
     private TpaPlugin plugin;
 
-    public TpaCommand(TpaPlugin plugin) {
+    public TpdenyCommand(TpaPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -24,23 +23,16 @@ public class TpaCommand implements CommandExecutor {
             return true;
         }
 
-        Player recipient = Bukkit.getPlayer(args[0]);
-        if (recipient == null) {
-            sender.sendMessage("The player could not be found.");
+        Player user = (Player) sender;
+
+        if(plugin.getRequest(user) == null){
+            sender.sendMessage("You do not have any existing requests");
             return true;
         }
 
-        if(plugin.getRequest(recipient) != null) {
-            sender.sendMessage("This player already has an active request");
-            return true;
-        }
-
-        plugin.addRequest((Player) sender, recipient, Type.TPA);
-        recipient.sendMessage(ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + sender.getName() + " would like to teleport to you. Do /tpaccept or /tpdeny");
-        sender.sendMessage("Request sent");
+        plugin.removeRequest(user);
 
         return true;
     }
-
 
 }

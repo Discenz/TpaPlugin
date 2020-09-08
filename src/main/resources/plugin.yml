@@ -10,4 +10,13 @@ commands:
   tpaccept:
     description: Accept a teleport request.
     usage: /<command>
+
+  tpahere:
+    description: Request to teleport another player to you.
+    usage: /<command> playername
+
+  tpdeny:
+    description: Deny a teleport request.
+    usage: /<command>
+
 api-version: 1.15
