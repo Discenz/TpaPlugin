@@ -1,0 +1,13 @@
+name: TpaPlugin
+main: me.discens.tpaplugin.TpaPlugin
+version: 1.0
+author: Discens
+commands:
+  tpa:
+    description: Request to teleport to another player.
+    usage: /<command> playername
+
+  tpaccept:
+    description: Accept a teleport request.
+    usage: /<command>
+api-version: 1.15.2
