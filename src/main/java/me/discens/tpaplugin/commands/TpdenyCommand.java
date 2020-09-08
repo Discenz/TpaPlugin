@@ -2,8 +2,8 @@ package me.discens.tpaplugin.commands;
 
 import me.discens.tpaplugin.TpaPlugin;
 import me.discens.tpaplugin.api.TpaRequest;
-import me.discens.tpaplugin.api.Type;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,18 +19,23 @@ public class TpdenyCommand implements CommandExecutor {
     public boolean onCommand(final CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Error: Must be a player to use this command.");
+            sender.sendMessage(ChatColor.RED + "Error: Must be a player to use this command.");
             return true;
         }
 
-        Player user = (Player) sender;
 
-        if(plugin.getRequest(user) == null){
-            sender.sendMessage("You do not have any existing requests");
+        TpaRequest request = plugin.getRequest((Player) sender);
+        Player recipient = Bukkit.getPlayer(request.getSender().getName());
+
+        if(request == null){
+            sender.sendMessage(ChatColor.GRAY + "You do not have any existing requests.");
             return true;
         }
 
-        plugin.removeRequest(user);
+        sender.sendMessage(ChatColor.GRAY + "Request from " + ChatColor.YELLOW + recipient.getName() + ChatColor.GRAY + " denied.");
+        recipient.sendMessage(ChatColor.GRAY + "Your request to " + ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + " was denied.");
+
+        plugin.removeRequest((Player) sender);
 
         return true;
     }

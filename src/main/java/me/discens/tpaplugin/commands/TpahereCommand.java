@@ -19,24 +19,25 @@ public class TpahereCommand implements CommandExecutor {
     public boolean onCommand(final CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Error: Must be a player to use this command.");
+            sender.sendMessage(ChatColor.RED + "Error: Must be a player to use this command.");
             return true;
         }
 
         Player recipient = Bukkit.getPlayer(args[0]);
+
         if (recipient == null) {
-            sender.sendMessage(ChatColor.RED + "Error: The player could not be found.");
+            sender.sendMessage(ChatColor.YELLOW + args[0] + ChatColor.GRAY + " could not be found.");
             return true;
         }
 
         if(plugin.getRequest(recipient) != null) {
-            sender.sendMessage("This player already has an active request");
+            sender.sendMessage(ChatColor.YELLOW + args[0] + ChatColor.GRAY + " already has an active request");
             return true;
         }
 
         plugin.addRequest((Player) sender, recipient, Type.TPAHERE);
-        recipient.sendMessage(sender.getName() + " would like you to teleport to them. Do /tpaccept or /tpdeny");
-        sender.sendMessage("Request sent");
+        recipient.sendMessage(ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + " would like you to teleport to them. Do /tpaccept or /tpdeny");
+        sender.sendMessage(ChatColor.GRAY + "Tpahere request sent to " + ChatColor.YELLOW + args[0]);
 
         return true;
     }
