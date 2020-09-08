@@ -1,6 +1,8 @@
 package me.discens.tpaplugin.commands;
 
 import me.discens.tpaplugin.TpaPlugin;
+import me.discens.tpaplugin.api.TpaRequest;
+import me.discens.tpaplugin.api.Type;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -37,7 +39,7 @@ public class TpaCommand implements CommandExecutor {
             return true;
         }
 
-        plugin.addRequest((Player) sender, recipient);
+        plugin.addRequest((Player) sender, recipient, Type.TPA);
         recipient.sendMessage(sender.getName() + " would like to teleport to you. Do /tpaccept or /tpdeny");
         sender.sendMessage("Request sent");
 

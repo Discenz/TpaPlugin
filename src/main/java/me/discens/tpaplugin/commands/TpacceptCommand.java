@@ -1,6 +1,8 @@
 package me.discens.tpaplugin.commands;
 
 import me.discens.tpaplugin.TpaPlugin;
+import me.discens.tpaplugin.api.TpaRequest;
+import me.discens.tpaplugin.api.Type;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,8 +30,13 @@ public class TpacceptCommand implements CommandExecutor {
             return true;
         }
 
-        Player recipient = Bukkit.getPlayer(plugin.getRequest(user));
-        recipient.teleport(user);
+        TpaRequest request = plugin.getRequest(user);
+
+        Player recipient = Bukkit.getPlayer(request.getSender().getName());
+
+        if(request.getType() == Type.TPA) recipient.teleport(user);
+        else user.teleport(recipient);
+
         plugin.removeRequest(user);
 
         return true;
