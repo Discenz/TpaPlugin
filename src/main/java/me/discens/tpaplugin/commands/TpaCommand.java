@@ -26,8 +26,6 @@ public class TpaCommand implements CommandExecutor {
             return false;
         }
 
-        sender.sendMessage("You entered: /" + label + " " + args[0]);
-
         Player recipient = Bukkit.getPlayer(args[0]);
         if (recipient == null) {
             sender.sendMessage("The player could not be found.");

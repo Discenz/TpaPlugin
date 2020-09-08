@@ -10,4 +10,4 @@ commands:
   tpaccept:
     description: Accept a teleport request.
     usage: /<command>
-api-version: 1.15.2
+api-version: 1.15

@@ -1,3 +1,6 @@
+#plugins
+target
+
 # eclipse
 bin
 *.launch
