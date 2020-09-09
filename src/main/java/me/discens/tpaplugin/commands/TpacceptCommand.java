@@ -32,11 +32,14 @@ public class TpacceptCommand implements CommandExecutor {
         }
 
         TpaRequest request = plugin.getRequest(user);
+        String targetName = request.getSender().getName();
 
-        Player recipient = Bukkit.getPlayer(request.getSender().getName());
+        Bukkit.getOnlinePlayers().toArray();
+
+        Player recipient = Bukkit.getPlayer(targetName);
 
         if (recipient == null){
-            sender.sendMessage(ChatColor.YELLOW + recipient.getName() + ChatColor.GRAY + " is not online anymore.");
+            sender.sendMessage(ChatColor.YELLOW + targetName + ChatColor.GRAY + " is not online anymore.");
             return true;
         }
 
@@ -45,7 +48,7 @@ public class TpacceptCommand implements CommandExecutor {
             recipient.sendMessage(ChatColor.GRAY + "Teleporting...");
             recipient.teleport(user);
         }
-        else {
+        else if (request.getType() == Type.TPAHERE) {
             sender.sendMessage(ChatColor.GRAY + "Teleporting...");
             recipient.sendMessage(ChatColor.GRAY + "Teleporting " + ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + "...");
             user.teleport(recipient);
