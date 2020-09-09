@@ -6,7 +6,6 @@ TpaPlugin is a Spiggot plugin in active development which includes the `/tpa` co
 
 ## Todo
 
-* Fix bug for tpaccept when sender goes offline
 * 10 second wait period before teleport activates
 * 30 second period before teleport expires
 * `/tpignore` ignore a certain user

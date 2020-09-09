@@ -4,6 +4,7 @@ import me.discens.tpaplugin.TpaPlugin;
 import me.discens.tpaplugin.api.Type;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -36,6 +37,7 @@ public class TpahereCommand implements CommandExecutor {
         }
 
         plugin.addRequest((Player) sender, recipient, Type.TPAHERE);
+        recipient.playSound(recipient.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
         recipient.sendMessage(ChatColor.YELLOW + sender.getName() + ChatColor.GRAY + " would like you to teleport to them. Do /tpaccept or /tpdeny");
         sender.sendMessage(ChatColor.GRAY + "Tpahere request sent to " + ChatColor.YELLOW + args[0]);
 
