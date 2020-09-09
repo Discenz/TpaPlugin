@@ -31,6 +31,11 @@ public class TpahereCommand implements CommandExecutor {
             return true;
         }
 
+        if (recipient.getName().equalsIgnoreCase(sender.getName())) {
+            sender.sendMessage(ChatColor.GRAY + "You cannot teleport to yourself.");
+            return true;
+        }
+
         if(plugin.getRequest(recipient) != null) {
             sender.sendMessage(ChatColor.YELLOW + args[0] + ChatColor.GRAY + " already has an active request");
             return true;
